@@ -39,7 +39,7 @@ public class Bullets {
     }
 
     public List<Ammo> getList() {
-        return null;
+        return ammo;
     }
 
     public String toString() {

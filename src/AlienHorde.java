@@ -42,13 +42,15 @@ public class AlienHorde {
         }
     }
 
-    public void removeDeadOnes(Ammo al) {
+    public void removeDeadOnes(List<Ammo> al) {
         if(aliens.size() > 0){
             for(Alien a: aliens){
-                if(al.didCollideBottom(a) && al.didCollideLeft(a) && al.didCollideRight(a)){
-                    a.setHeight(0);
-                    a.setWidth(0);
-                }
+                for(Ammo i : al){
+                    if(i.didCollideBottom(a) && i.didCollideLeft(a) && i.didCollideRight(a)){
+                        a.setHeight(0);
+                        a.setWidth(0);
+                    }
+                }  
             }
         }  
     }

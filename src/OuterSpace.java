@@ -39,6 +39,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
 //        alienOne = new Alien(100,100,100,100,1);
 //        alienTwo = new Alien(300,100,100,100,1);
         ammo = new Ammo();
+        shots = new Bullets();
         horde = new AlienHorde(20);
         
         this.addKeyListener(this);
@@ -83,12 +84,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
             ship.move("DOWN");
         }
         if (keys[4] == true) {
-            ammo = new Ammo(ship.getX()+ship.getWidth()/2, ship.getY());
-//            if(shoot == true){
-//                shots = new Bullets();
-//                shots.add(new Ammo(ship.getX(), ship.getY(), 5));
-//            }
-            shoot = true;
+//            ammo = new Ammo(ship.getX()+ship.getWidth()/2, ship.getY());
         }
 
         //add code to move Ship, Alien, etc.
@@ -99,14 +95,14 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
         horde.drawEmAll(graphToBack);
         
         if(shoot == true){  
-            ammo.move("UP");
-            ammo.draw(graphToBack);
-//            shots.moveEmAll();
-//            shots.drawEmAll(graphToBack);
+//            ammo.move("UP");
+//            ammo.draw(graphToBack);
+            shots.moveEmAll();
+            shots.drawEmAll(graphToBack);
         }
 //        
 //        //add in collision detection to see if Bullets hit the Aliens and if Bullets hit the Ship
-        horde.removeDeadOnes(ammo);
+        horde.removeDeadOnes(shots.getList());
         
         twoDGraph.drawImage(back, null, 0, 0);
     }
@@ -126,6 +122,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
         }
         if (e.getKeyCode() == KeyEvent.VK_SPACE) {
             keys[4] = true;
+            shots.add(new Ammo(ship.getX(), ship.getY(), 5)); 
+            shoot = false;
         }
         repaint();
     }
@@ -145,6 +143,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
         }
         if (e.getKeyCode() == KeyEvent.VK_SPACE) {
             keys[4] = false;
+            shoot = true;
         }
         repaint();
     }
