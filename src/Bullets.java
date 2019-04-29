@@ -24,18 +24,22 @@ public class Bullets {
 
     //post - draw each Ammo
     public void drawEmAll(Graphics window) {
-        for(Ammo a : ammo) {
-            a.draw(window);
-        }
     }
 
-    public void moveEmAll() {
-        for(Ammo a : ammo) {
-            a.move("UP");
-        }
+    public void moveEmAll(Graphics window) {
+        for(Ammo a : ammo) {  
+            if (a.getY() > 0) {
+                a.move("UP");
+                a.draw(window);
+            }
+            else{
+                ammo.remove(a);
+            }
+        }    
     }
 
     public void cleanEmUp() {
+        ammo.clear();
     }
 
     public List<Ammo> getList() {

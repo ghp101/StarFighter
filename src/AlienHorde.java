@@ -16,9 +16,13 @@ public class AlienHorde {
 
     public AlienHorde(int size) {
         aliens = new ArrayList<Alien>();
-        for (int i = 0; i < size; i++) {
-            aliens.add(new Alien(i*50, 0, 50, 50, 2));
-        }
+        for(int j = 0; j<size; j++){
+            int x = 0;
+            for (int i = 0; i < 20; i++) {
+                aliens.add(new Alien(x, j*100, 50, 50, 1));
+                x+=50;
+            }
+        }  
     }
 
     public void add(Alien al) {
@@ -35,7 +39,7 @@ public class AlienHorde {
         for (Alien a : aliens) {
             if (!(a.getX() >= 10 && a.getX() <= 700)) {
                 a.setSpeed(-a.getSpeed());
-                a.setY(a.getY() + 20);
+                a.setY(a.getY() + 50);
             }
             
             a.move("RIGHT");
